@@ -37,7 +37,8 @@ function wordsearch(words, width, height, backwards = 0.5, dir = 4, lower = fals
 
   // loop the words
   for (let i = 0; i < words.length; i++) {
-    let word = originalword = words[i];
+    let originalword = words[i];
+    let word = originalword;
 
     // reverse the word if needed
     if (Math.random() < backwards) {
@@ -53,8 +54,10 @@ function wordsearch(words, width, height, backwards = 0.5, dir = 4, lower = fals
       const info = directioninfo(word, direction, width, height);
 
       // random starting point
-      let x = ox = Math.round(Math.random() * (info.maxx - info.minx) + info.minx);
-      let y = oy = Math.round(Math.random() * (info.maxy - info.miny) + info.miny);
+      let ox = Math.round(Math.random() * (info.maxx - info.minx) + info.minx);
+      let x = ox;
+      let oy = Math.round(Math.random() * (info.maxy - info.miny) + info.miny);
+      let y = oy;
 
       // check to make sure there are no collisions
       let placeable = true;
