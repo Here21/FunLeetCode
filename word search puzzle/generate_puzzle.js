@@ -1,10 +1,11 @@
 function wordsearch(words, width, height, backwards = 0.5, dir = 4, lower = false) {
   const CHARACTER = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
   const letters = lower ? CHARACTER.toLowerCase() : CHARACTER;
-  const wordre = /^[A-Z]+$/i;                    // what a valid word looks like
+  const wordre = /^[A-Z]+$/i;                   // what a valid word looks like
   const MAXATTEMPTS = 20;                       // maximum amount of times to place a word
   const invaid = [];                            // store invalid word
   const unplaced = [];                          // put word into puzzle more than the limit of MAXATTEMPTS
+  const answer = {};
 
   if (!Array.isArray(words) && words.length < 1) {
     return false;
@@ -18,6 +19,7 @@ function wordsearch(words, width, height, backwards = 0.5, dir = 4, lower = fals
   words = words.map(word =>
     lower ? word.toLowerCase() : word.toUpperCase()
   ).filter((word) => {
+    // The length of the word is less than the shortest side of the matrix to ensure that other words are placed
     if (wordre.test(word) && word.length < Math.min(width, height)) {
       return true;
     }
@@ -39,6 +41,7 @@ function wordsearch(words, width, height, backwards = 0.5, dir = 4, lower = fals
   for (let i = 0; i < words.length; i++) {
     let originalword = words[i];
     let word = originalword;
+    let position = [];
 
     // reverse the word if needed
     if (Math.random() < backwards) {
@@ -90,34 +93,42 @@ function wordsearch(words, width, height, backwards = 0.5, dir = 4, lower = fals
       y = oy;
       for (let l = 0; l < word.length; l++) {
         grid[y][x] = word.charAt(l);
+        position.push({y, x});
         y += info.dy;
         x += info.dx;
       }
       break;
     } // end placement while loop
 
-    if (attempts >= 20) unplaced.push(originalword);
+    if (attempts >= 20) {
+      unplaced.push(originalword);
+    } else {
+      answer[originalword] = position;
+    }
   } // end word loop
 
   // the solved grid... XXX I hate this
   const solved = JSON.parse(JSON.stringify(grid));
 
   // put in filler characters
-  for (let i = 0; i < grid.length; i++)
-    for (let j = 0; j < grid[i].length; j++)
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
       if (!grid[i][j]) {
         solved[i][j] = ' ';
         grid[i][j] = letters.charAt(
           Math.floor(Math.random() * letters.length)
         );
       }
+    }
+  }
 
   // give the user some stuff
   return {
     grid: grid,
     solved: solved,
     unplaced: unplaced,
-    invaid: invaid
+    invaid: invaid,
+    answer: answer
   };
 }
 
@@ -172,6 +183,6 @@ function directioninfo(word, direction, width, height) {
   }
 }
 
-const res = wordsearch(['dog', 'cat', 'Tes', 'book', 'catepaer', 'book', 'book'], 6, 6, 1, 2, true);
+const res = wordsearch(['dog', 'cat', 'Tes', 'book', 'catepaer', 'book', 'book'], 10, 10, 1, 2, true);
 
 console.log(res);
