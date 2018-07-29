@@ -1,3 +1,4 @@
+// 【作废】此答案是原始思路，作为笔记存在，没有通过全部的test case
 var threeSum = function(nums) {
   const len = nums.length;
   if(len < 3) return [];

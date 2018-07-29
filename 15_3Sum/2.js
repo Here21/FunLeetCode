@@ -1,6 +1,5 @@
 var threeSum = function(nums) {
-  const arr = nums.sort((a, b) => a - b);
-  console.log(arr);
+  nums.sort((a, b) => a - b);
   const result = [];
   for(let left = 0; left < nums.length - 2; left++) {
     // 加快左标，如果有相同左标跳过，相当于除重
@@ -31,4 +30,4 @@ var threeSum = function(nums) {
   return result;
 };
 
-console.log(threeSum([-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]));
+console.log(threeSum([0,9,9,1,-4,-2,-2,-2,0,1,2,2,2,3,3,4,4,6,6]));
