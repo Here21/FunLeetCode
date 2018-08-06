@@ -4,6 +4,7 @@ var generateParenthesis = function(n) {
   return result;
 
   function backtrack(str, open, close, max, result){
+    // 满足长度
     if(str.length === max * 2) {
       result.push(str);
       return;
@@ -13,4 +14,4 @@ var generateParenthesis = function(n) {
   }
 };
 
-console.log(generateParenthesis(3))
+console.log(generateParenthesis(3));
