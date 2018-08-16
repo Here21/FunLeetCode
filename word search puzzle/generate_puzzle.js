@@ -5,7 +5,7 @@ function wordsearch(words, width, height, backwards = 0.5, dir = 4, lower = fals
   const MAXATTEMPTS = 20;                       // maximum amount of times to place a word
   const invaid = [];                            // store invalid word
   const unplaced = [];                          // put word into puzzle more than the limit of MAXATTEMPTS
-  const answer = {};
+  const answer = [];
 
   if (!Array.isArray(words) && words.length < 1) {
     return false;
@@ -20,7 +20,7 @@ function wordsearch(words, width, height, backwards = 0.5, dir = 4, lower = fals
     lower ? word.toLowerCase() : word.toUpperCase()
   ).filter((word) => {
     // The length of the word is less than the shortest side of the matrix to ensure that other words are placed
-    if (wordre.test(word) && word.length < Math.min(width, height)) {
+    if (wordre.test(word) && word.length <= Math.min(width, height)) {
       return true;
     }
     invaid.push(word);
@@ -103,7 +103,8 @@ function wordsearch(words, width, height, backwards = 0.5, dir = 4, lower = fals
     if (attempts >= 20) {
       unplaced.push(originalword);
     } else {
-      answer[originalword] = position;
+      // answer[originalword] = position;
+      answer.push({[originalword]: position})
     }
   } // end word loop
 
@@ -183,6 +184,6 @@ function directioninfo(word, direction, width, height) {
   }
 }
 
-const res = wordsearch(['dog', 'cat', 'Tes', 'book', 'catepaer', 'book', 'book'], 10, 10, 1, 2, true);
+const res = wordsearch(['dog', 'cat', 'Tes', 'book', 'catepaer', 'book', 'book'], 5, 5, 1, 2, true);
 
 console.log(res);
