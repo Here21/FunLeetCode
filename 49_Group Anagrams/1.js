@@ -1,18 +1,3 @@
-// var groupAnagrams = function(strs) {
-//   let count = 0;
-//   const result = [];
-//   const set = new Set();
-//   const arr = strs.map(str => {
-//     return str.split('').sort((a,b) => a > b).join('');
-//   })
-//   for(let i = 0; i < strs.length; i++) {
-//     if(!set.has(i)) {
-//       result[count] = [...strs[i]]
-//       count++;
-//     }
-//   }
-// };
-
 var groupAnagrams = function(strs) {
   if(strs === null || strs.length === 0) {
     return [];
