@@ -21,9 +21,9 @@ Output: [1,3,2]
 
 这道题是二叉树**中序遍历**（inorder traversal），即 **左->根->右** 遍历顺序。
 
-![Binary Tree Iterative](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwiiqNWRjaTdAhVQnOAKHclyAUQQjRx6BAgBEAU&url=https%3A%2F%2Fjavarevisited.blogspot.com%2F2016%2F07%2Fbinary-tree-preorder-traversal-in-java-using-recursion-iteration-example.html&psig=AOvVaw3zUAtHTpNQCPGsuFYr9O5S&ust=1536245068746132)
+![Binary Tree Iterative](https://1.bp.blogspot.com/-bn3KHYB2BYk/V4OfyZQUnNI/AAAAAAAAGng/T_EEc1IOXEoOdVvFQpCEr-LXAKqyu8F5wCLcB/s400/binary%2Btree%2BPreOrder%2Btraversal%2Bin%2BJava%2B.png)
 
-![Binary Tree Iterative](https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwic0cvgjaTdAhUNJt8KHRrJCJEQjRx6BAgBEAU&url=http%3A%2F%2Flib.csdn.net%2Farticle%2Fdatastructure%2F21948&psig=AOvVaw2j2exOZPzPt1pc-bqh2JHV&ust=1536245182782259)
+![Binary Tree Iterative 2](http://img.blog.csdn.net/20160531113110952)
 
 ### Backtracking
 
@@ -39,3 +39,5 @@ helper(root.right);
 ```
 
 ### Iterative
+
+**重点方法：**利用栈，进栈出栈来记录循环左边界，去代码中打断点可以很快理解。
