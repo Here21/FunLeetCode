@@ -33,3 +33,6 @@ The root node’s value is 5 but its right child’s value is 4.
 
 ## 解法
 
+使用backtracking的方式，通过给节点划定取值区间，来判断子树节点是否符合条件。
+
+打断点看一下很直观。
