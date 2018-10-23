@@ -10,17 +10,16 @@
  * @return {ListNode}
  */
 
-// Iterative
+// recursively
 
 var reverseList = function(head) {
-  let pre = null; 
-  while(head !== null) {
+  return helper(head, null);
+  function helper(head, next) {
+    if(head === null) return next;
     let temp = head.next;
-    head.next = pre;
-    pre = head;
-    head = temp;
+    head.next = next;
+    return helper(temp, head);
   }
-  return pre; 
 };
 
 const head = {
