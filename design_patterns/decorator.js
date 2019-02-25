@@ -12,13 +12,13 @@ function isAnimal(target) {
   target.isAnimal = true;
   return target;
 }
-@isAnimal
+// ES7 装饰器 @isAnimal
+// @isAnimal == isAnimal(Cat)
+class Cat {}
 
-class Cat {
-  ...
-}
+isAnimal(Cat);
 
-// console.log(Cat.isAnimal);    // true
+console.log(Cat.isAnimal); // true
 
 // ES5
 // Animal constructor
