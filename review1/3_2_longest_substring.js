@@ -27,13 +27,16 @@ function lengthOfLongestSubstring(s) {
     index = str.indexOf(s[i]);
     console.log("-i-", i, "-index-", index, "-str-", str, "-max-", max);
 
-    if (index === -1) {
-      str += s[i];
-      max = Math.max(max, str.length);
-    } else {
-      console.log(str, index);
+    // 判断s[i]字母存在str子串中
+    if (index !== -1) {
       str = str.substring(index + 1);
     }
+    // s[i]不存在
+    // str 加入 s[i]
+    str += s[i];
+
+    // 判断max
+    max = Math.max(max, str.length);
   }
 
   return max;
