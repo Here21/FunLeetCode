@@ -24,18 +24,52 @@ num1 和 num2 均不以零开头，除非是数字 0 本身。
  * @return {string}
  */
 var multiply = function (num1, num2) {
-  const resultList = [];
+  if (num1 == "0" || num2 == "0") {
+    return "0";
+  }
+  let result = "";
   // 遍历num2[i] * num1
-  for (let i = num2.length - 1; i > 0; i--) {
-    const temp = [];
+  for (let i = num2.length - 1; i >= 0; i--) {
+    // const temp = [];
+    let temp = "";
     // 补0
     for (let z = num2.length - 1 - i; z > 0; z--) {
-      temp.push(0);
+      temp += "0";
     }
 
     // 进位
     let carry = 0;
     // 计算
-    for (let j = num1.length - 1; j > 0; j--) {}
+    for (let j = num1.length - 1; j >= 0; j--) {
+      let n = (num1[j] * num2[i] + carry) % 10; // 取余
+      temp = n + temp;
+      carry = Math.floor((num1[j] * num2[i] + carry) / 10);
+    }
+    if (carry > 0) {
+      temp = carry + temp;
+    }
+    // 计算相加
+    result = addToSum(result, temp);
+  }
+
+  return result;
+
+  function addToSum(n1, n2) {
+    let carry = 0;
+    let sum = "";
+    for (
+      let i = n1.length - 1, j = n2.length - 1;
+      i >= 0 || j >= 0 || carry > 0;
+      i--, j--
+    ) {
+      let a = i < 0 ? 0 : n1.charAt(i) - 0; // 类型转换
+      let b = j < 0 ? 0 : n2.charAt(j) - 0; // 类型转换
+      let n = (a + b + carry) % 10;
+      sum = n + sum;
+      carry = Math.floor((a + b + carry) / 10);
+    }
+    return sum;
   }
 };
+
+console.log(multiply("9", "9"));
