@@ -51,16 +51,28 @@ var reverseWords = function (s) {
     ) {
       continue;
     }
+    // if (s[i].charCodeAt() === 32 && !result) {
+    //   continue;
+    // }
     if (s[i].charCodeAt() !== 32) {
       word += s[i];
+      continue;
     }
     if (s[i].charCodeAt() === 32) {
+      console.log(`char at ${i}: ${s[i]}`);
       result = result ? word + s[i] + result : word;
       word = "";
     }
   }
-  return word + " " + result;
+  if (word && result) {
+    return word + " " + result;
+  }
+  if (!word || !result) {
+    return word || result;
+  }
 };
 
 console.log(`--${reverseWords("the sky is blue")}--`);
 console.log(`--${reverseWords("  hello world!  ")}--`);
+console.log(`--${reverseWords("a ")}--`);
+console.log(`--${reverseWords("  a")}--`);
